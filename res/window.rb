@@ -4,11 +4,11 @@ class Window < Gosu::Window
     super(640, 480, false)
     self.caption = "PacRuby 3d"
     @map = Map.new(self, "res/map.txt")
-    @chara = Sprite3D.new(self, "media/troll.png", [0, 0, 15])
+    @chara = Sprite3D.new(self, "media/troll.png", [0, 0, 19])
     @enemy = Array.new
     #@enemy << Enemy.new(self, [0, 0, 0] )
     #@enemy << Enemy.new(self, [0, 0, 17] )
-    @e = Enemy.new(self, [0,0,13])
+    @e = Enemy.new(self, [3,0,1])
     @e.player = @chara
     @font = Gosu::Font.new(self, Gosu::default_font_name, 32)
     @message = "x: ,y:"

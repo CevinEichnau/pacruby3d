@@ -1,5 +1,7 @@
 class Map
+  attr_accessor :pos
   def initialize(parent_window, filename)
+    @pos = [0,0,0]
     @parent_window = parent_window
     @graphics = {
       0 => Gosu::Image.new(@parent_window, "media/way.png", true),
@@ -7,9 +9,11 @@ class Map
     }
 
     @map_height = 0
+    a = 0
     @tiles = Hash.new
     File.open(filename).readlines.each do |line|
       line = line.chomp.split(",")
+      
       if !defined?(@map_width)
         @map_width = line.size #it should 9
       end

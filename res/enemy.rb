@@ -8,29 +8,68 @@ attr_accessor  :x, :y, :z, :player
     @x = position[0]
     @y = position[1]
     @z = position[2]
+    self.read_file
+  end
+
+  def read_file
+    map = ""
+    x=0
+    y=0
+    
+    File.open("res/map.txt", "r") do |file|
+      file.each_line do |line|
+        line=line.gsub(/\\n/, "")
+        
+        x = 0
+        line.each_char do |c|
+          
+
+          
+          if c == "1"
+          	puts "1 founf x:#{x} y:#{y}"
+          @w=Item.new
+          @w.x = x 
+          @w.y = y
+          end
+          x += 1
+        end  
+        y += 1
+      end  
+
+    end  
+   
   end
 
 
 
  def think(chara)
   n = Node.new(@x, @z)
-  n.evaluate_step(self, 5)
+  n.evaluate_step(self, 1)
   self.evaluateNode(@x, @z, self.player.x, self.player.z)
-  puts "#{self.z}, #{n.node.y}"
+ # puts "#{@w.x}, #{@w.y}"
   if self.z != n.node.y
     if self.z < n.node.y
-      self.move(:down)
+      self.move(:down) if self.check
     elsif self.z > n.node.y
-      self.move(:up)
+      self.move(:up) if self.check
     end  
   elsif self.x != n.node.x
     if self.x < n.node.x
-      self.move(:right)
+      self.move(:right) if self.check
     else
-      self.move(:left)
+      self.move(:left) if self.check
     end 
   end  
  end 
+
+
+ def check
+ 	if self.x != @w.x and self.z != @w.y
+ 		return true
+ 	else
+ 		return false
+ 	end		
+ end	
 
   def evaluateNode(x, y, x1, y1)
     px = self.player.x
