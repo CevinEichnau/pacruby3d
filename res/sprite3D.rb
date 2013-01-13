@@ -49,7 +49,7 @@ class Sprite3D
   end
   
   def move(direction)
-    move_speed = 0.0625
+    move_speed = 0.625
     diag_speed = 1.0
     frame_speed = 0.15
     
@@ -84,7 +84,7 @@ class Sprite3D
 
   
   def update
-    
+
     @p_window.message = "x:#{@x}  y:#{@y}  z:#{@z}"
     if @destinations != nil and !@destinations.empty?
       if @step_destination >= @destinations.size
